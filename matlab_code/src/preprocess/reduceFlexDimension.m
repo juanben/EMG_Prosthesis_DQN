@@ -5,11 +5,15 @@ function flexData = reduceFlexDimension(gloveData)
 
 persistent fingers flexMapping
 if isempty(fingers)
-    fingers = definitions("fingers");
+    fingers = {'little', 'idx', 'thumb', 'mid'};
 end
 
 if isempty(flexMapping)
-    flexMapping = definitions("flexMapping");
+    flexMapping.thumb = {'thumb'};
+    flexMapping.idx = {'indexUp', 'indexDown'};
+    flexMapping.mid = {'middleUp', 'middleDown'};
+    flexMapping.little = {'ringUp', 'ringDown', 'pinkyUp', 'pinkyDown'};
+    %flexMapping = definitions("flexMapping");
 end
 
 flexData = zeros(length(gloveData), 4);

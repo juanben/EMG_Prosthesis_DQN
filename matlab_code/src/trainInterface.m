@@ -20,8 +20,8 @@ function trainingInfo = trainInterface(agent_id, param_name, param_value)
 %
 
 %{
-Laboratorio de Inteligencia y Visión Artificial
-ESCUELA POLITÉCNICA NACIONAL
+Laboratorio de Inteligencia y Visin Artificial
+ESCUELA POLITCNICA NACIONAL
 Quito - Ecuador
 
 autor: Jonathan Zea
@@ -46,16 +46,17 @@ rng('default');
 
 %% Aux and dependent variables
 % libs
-addpath(genpath('.\src\'))
-addpath(genpath('.\config\'))
-addpath(genpath('.\lib\'))
-addpath(genpath('.\agents\'))
+addpath(genpath('.\src'))
+addpath(genpath('.\config'))
+addpath(genpath('.\lib'))
+addpath(genpath('.\agents'))
 
 configs = configurables();
 hardware = definitions();
 
 %% Agent
-if configs.newTraining
+%if configs.newTraining
+if true
     %- creating agent
     observationInfo = Env.defineObservationInfo();
     actionInfo = Env.defineActionDiscreteInfo();

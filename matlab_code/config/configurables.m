@@ -69,8 +69,8 @@ params.verbose = true;  % print every statement verbose
 % when ``run_training`` is true, the environment trains the agent.
 % when false, only uses the agent (simulation aka evaluation). Some configs
 % are defined depending on the value of ``run_training``.
-% params.run_training = true;
- params.run_training = false;
+params.run_training = true;
+ %params.run_training = false;
 
 
 % --- sim options
@@ -109,7 +109,7 @@ end
 if ~params.newTraining
 
     params.agentFile = ...
-        "D:\trainedAgentsProtesisDenisFinal\00_oldy\_\24-07-18 08 55 10\Agent5000.mat";
+        "D:\RepositorioLudolab\EMG_Prosthesis_DQN\matlab_code\trainedAgentsProtesis\0D_oldy\_\2024-1\Agent3000.mat";
     params.agent_id = 'best'; % or name
     % params.agentFile = ...
     %     ".\trainedAgents\Agent3.mat";
@@ -154,7 +154,7 @@ if params.usePrerecorded
     % params.dataset = "CECILIA";
     % params.dataset = "GABI";
     % params.dataset = "JONATHAN";
-    params.dataset_folder = '.\data\datasets\Denis Dataset\';
+    params.dataset_folder = 'D:\RepositorioLudolab\EMG_Prosthesis_DQN\matlab_code\data\datasets\Denis Dataset\';
 else
 
     % --- Connection devices Prosthesis

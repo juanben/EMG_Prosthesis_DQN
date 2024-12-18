@@ -42,9 +42,9 @@ agentOptions = rlDQNAgentOptions(...
     'DiscountFactor', 0.99 );% default
 
 
-% agentOptions.EpsilonGreedyExploration.EpsilonDecay = 1e-4;
-% agentOptions.EpsilonGreedyExploration.Epsilon = 1; % default
-% agentOptions.EpsilonGreedyExploration.EpsilonMin = 0.01; % default
+ agentOptions.EpsilonGreedyExploration.EpsilonDecay = 1e-4;
+ agentOptions.EpsilonGreedyExploration.Epsilon = 1; % default
+ agentOptions.EpsilonGreedyExploration.EpsilonMin = 0.01; % default
 
 agent = rlDQNAgent(observationInfo,actionInfo, initOpts, agentOptions);
 

@@ -45,7 +45,7 @@ agentFile  = "D:\trainedAgentsProtesis\best\_\24-07-03 14 31 48\Agent100.mat";
 name = 'FINAL';
 
 %% Define the base directory and the episode directory
-baseDir = "C:\Users\david\Documents\GitHub\prosthesis_v2\prosthesis_code\lib\prosthesis_v2\matlab_code\episodes";
+baseDir = "D:\RepositorioLudolab\EMG_Prosthesis_DQN\matlab_code\episodes";
 episodeDir = fullfile(baseDir, name);
 
 % Create the base directory if it doesn't exist

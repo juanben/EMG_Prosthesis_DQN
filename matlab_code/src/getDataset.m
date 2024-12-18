@@ -36,7 +36,7 @@ New ver modified after 2nd January 2024.
 %% Input Validation
 arguments
     datasetName_s
-    folderData (1, 1) string = '.\data\datasets\';
+    folderData (1, 1) string = fullfile('/mnt/Downloads/GitClones/EMG_Prosthesis_DQN/matlab_code/','data','datasets');
 end
 
 %% configs

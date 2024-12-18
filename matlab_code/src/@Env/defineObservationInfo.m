@@ -30,7 +30,7 @@ Mod 2024/jan/3
 %unpacking
 params = configurables();
 hardware = definitions();
-
+disp(params)
 numEMGFeatures = params.numEMGFeatures;
 numMotors = hardware.numMotors;
 

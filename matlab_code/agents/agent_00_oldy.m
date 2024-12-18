@@ -20,26 +20,27 @@ jonathan.a.zea@ieee.org
 
 %%
 %numHiddenUnits = 14;
-hL = @reluLayer;
+hL = @tanhLayer;
 
 %% newtork
 criticNetwork = [
-    featureInputLayer(44, "Name", "observation")
-    fullyConnectedLayer(64, "Name", "fc_1")
-    hL("Name", "hL1")
-    fullyConnectedLayer(64, "Name", "fc_2")
-    hL("Name", "hL2")
-    fullyConnectedLayer(32, "Name", "fc_3")
-    hL("Name", "hL3")
-    fullyConnectedLayer(81, "Name", "output")];
+    featureInputLayer(44, "Name", "observation") % Entrada con 44 características
+    fullyConnectedLayer(128, "Name", "fc_1")    % Capa completamente conectada con 128 unidades
+    hL("Name", "hL1")                           % Capa de activación tanh
+    fullyConnectedLayer(128, "Name", "fc_2")    % Segunda capa completamente conectada con 128 unidades
+    hL("Name", "hL2")                           % tanh
+    fullyConnectedLayer(64, "Name", "fc_3")     % Tercera capa completamente conectada con 64 unidades
+    hL("Name", "hL3")                           % tanh
+    fullyConnectedLayer(32, "Name", "fc_4")     % Cuarta capa completamente conectada con 32 unidades
+    hL("Name", "hL4")                           % tanh
+    fullyConnectedLayer(81, "Name", "output")]; % Capa de salida con 81 unidades
 
-
-
+ % ,'UseDevice','gpu'
 opt = rlRepresentationOptions( ...
-    'LearnRate', 1e-3, ... % default 0.01
+    'LearnRate', 1e-4, ... % default 0.01
     'L2RegularizationFactor', 1e-4... % default 1e-4
-    , 'Optimizer', 'sgdm' ... % default adam
-    ,'UseDevice','gpu');
+    , 'Optimizer', 'adam' ... % default adam
+  );
 
 % for adam
 % opt.OptimizerParameters.GradientDecayFactor = 0.99; % Default 0.9
@@ -60,7 +61,7 @@ agentOptions = rlDQNAgentOptions(...
     'MiniBatchSize', 32, ...
     'NumStepsToLookAhead', 1, ...
     'ExperienceBufferLength', 5000, ... % default
-    'DiscountFactor', 0.99);% default
+    'DiscountFactor', 0.998);% default
 
 agentOptions.EpsilonGreedyExploration.EpsilonDecay = 5e-5;
 agentOptions.EpsilonGreedyExploration.Epsilon = 1; % default
