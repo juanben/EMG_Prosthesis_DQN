@@ -24,15 +24,15 @@ clc
 
 %% Agent
 
-agentFile  = ".\trainedAgents\22-03-27 18 46 final_eps0.3_alf5e-5_161.mat";
+agentFile  = ".\trainedAgents\Agent150000.mat";
 
-name = 'final_eps0.3_alf1e-5';
+name = 'Agent150000';
 
 
 
 %- loading agent
-aux = load (agentFile, "agent");
-agent = aux.agent;
+aux = load (agentFile, "saved_agent");
+agent = aux.saved_agent;
 
 %--- just in case, maybe not needed
 agent.AgentOptions.EpsilonGreedyExploration.EpsilonDecay = 0.1;

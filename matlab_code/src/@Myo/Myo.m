@@ -32,14 +32,17 @@ classdef Myo < handle
             % # ----
             connectMyo(obj);
         end
-
+        
         connectMyo(obj)
         terminateMyo(obj)
 
         %%
         % -----------------------------------------------------------------
         function resetBuffer(obj)
-            obj.myoObject.myoData.clearLogs();
+            disp(obj);
+            disp(obj.myoObject)
+            disp(obj.myoObject.myoData)
+           obj.myoObject.myoData.clearLogs();
         end
         %%
         % -----------------------------------------------------------------

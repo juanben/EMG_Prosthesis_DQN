@@ -55,8 +55,8 @@ configs = configurables();
 hardware = definitions();
 
 %% Agent
-%if configs.newTraining
-if true
+if configs.newTraining
+%if true
     %- creating agent
     observationInfo = Env.defineObservationInfo();
     actionInfo = Env.defineActionDiscreteInfo();
@@ -117,15 +117,15 @@ else
     env = Env(agent_dir);
 end
 
-% % ---
-% % env.prosthesis.goHomePosition(true,true);
-% % drawnow;
+% ---
+% env.prosthesis.goHomePosition(true,true);
+% drawnow;
 % pos = env.prosthesis.read();
 % env.log(sprintf("Reseting Initial position from [%d %d %d %d] to 0", ...
 %     pos(end, 1), pos(end, 2), pos(end, 3), pos(end, 4)));
-%
+% 
 % env.prosthesis.resetEncoder(); % home position at zero
-% drawnow
+%drawnow
 
 %% run the training or evaluation!
 if configs.run_training
@@ -140,6 +140,7 @@ else
     simpOpts = configs.simOpts;
     env.log("Starting evaluation!");
     trainingInfo = sim(agent, env, simpOpts);
+    env.plot
 end
 
 

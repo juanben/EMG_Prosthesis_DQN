@@ -69,8 +69,8 @@ params.verbose = true;  % print every statement verbose
 % when ``run_training`` is true, the environment trains the agent.
 % when false, only uses the agent (simulation aka evaluation). Some configs
 % are defined depending on the value of ``run_training``.
-params.run_training = true;
- %params.run_training = false;
+%params.run_training = true;
+params.run_training = false;
 
 
 % --- sim options
@@ -83,12 +83,12 @@ if ~params.run_training
         );
 else
     params.RLtrainingOptions = rlTrainingOptions(...
-        'MaxEpisodes',5000,... % when too many episodes it makes slower creating episode =20000000
+        'MaxEpisodes',3000,... % when too many episodes it makes slower creating episode =20000000
         'MaxStepsPerEpisode', params.maxNumberStepsInEpisodes,...
         'StopTrainingCriteria',"AverageReward",...
         'StopTrainingValue', 600,... % new rewards
         'SaveAgentCriteria','EpisodeFrequency', ...
-        'SaveAgentValue', 200 ...
+        'SaveAgentValue', 500 ...
         ..., Plots="none" ... % debugging
         );
 end
@@ -109,7 +109,7 @@ end
 if ~params.newTraining
 
     params.agentFile = ...
-        "D:\RepositorioLudolab\EMG_Prosthesis_DQN\matlab_code\trainedAgentsProtesis\0D_oldy\_\2024-1\Agent3000.mat";
+        "C:\trainedAgentsProtesisTest\00_oldy\_\25-02-17 01 42 32\Agent3000.mat";
     params.agent_id = 'best'; % or name
     % params.agentFile = ...
     %     ".\trainedAgents\Agent3.mat";
@@ -123,16 +123,16 @@ if params.run_training
 
     % when ``usePrerecorded`` true, loads a dataset (EMG and glove).
     % Otherwise uses real devices (EMG y/o glove).
-     params.usePrerecorded = true;
-    % params.usePrerecorded = false;
+    params.usePrerecorded = true;
+    %params.usePrerecorded = false;
 
     % use simulator of the prosthesis
-     params.simMotors = true; % run with simulated objects
-    % params.simMotors = false; % run in hardware/RT
+   % params.simMotors = true; % run with simulated objects
+    params.simMotors = false; % run in hardware/RT
 
     % when not using prerecordings connects and reads the real glove
-    % params.connect_glove = false;% for evaluation with glove ref
-     params.connect_glove = true; %execute RT, uses shallow fake glove
+     params.connect_glove = false;% for evaluation with glove ref
+    % params.connect_glove = true; %execute RT, uses shallow fake glove
 else
     % --- only applicable in evaluation|sim
     params.usePrerecorded = true;
@@ -154,19 +154,19 @@ if params.usePrerecorded
     % params.dataset = "CECILIA";
     % params.dataset = "GABI";
     % params.dataset = "JONATHAN";
-    params.dataset_folder = 'D:\RepositorioLudolab\EMG_Prosthesis_DQN\matlab_code\data\datasets\Denis Dataset\';
+    params.dataset_folder = 'C:\Users\z_tja\Desktop\matlab_code\data\datasets\Denis Dataset\';
 else
 
     % --- Connection devices Prosthesis
-    params.comUNO = "COM5"; % prosthesis device
-    params.comGlove = "COM3"; % glove
+    params.comUNO = "COM6"; % prosthesis device
+    params.comGlove = "COM4"; % glove
 end
 
 
 %% rewarding
 % parameters of the corresponding reward functions are defined inside it.
 params.rewardType = 'legacy_distanceRewarding';% the choosen one
-% rewardType = 'discreteDirectionalRewarding'; % not good
+% rewardType = 'discreteDir1ectionalRewarding'; % not good
 % rewardType = 'pureDistanceRewarding'; % not good
 
 params.reward_function = @(env, action, observation) ...
@@ -179,7 +179,7 @@ params.reward_function = @(env, action, observation) ...
 params.unifyActions = false;
 
 % params.speeds = [170, 170, 255, 170]; % little, idx, thumb, mid
-params.speeds = 255* [1, 1, 1, 1]; % little, idx, thumb, mid
+params.speeds = 100* [1, 1, 1, 1]; % little, idx, thumb, mid
 
 % clipping
 % when true, the reward function can limit, modify or clip the action.
@@ -201,16 +201,16 @@ params.agents_directory = @(agent_id, variant)(fullfile("D:\", ...
 params.episode_save_freq = 1; % 1 saves every episode.
 
 
-%% feature extraction
+% feature extraction
 % normalization of EMG features
-fileCS = ".\config\normValues.mat";
+fileCS = "C:\Users\z_tja\Desktop\matlab_code\config\normValues.mat";
 bars = load (fileCS,"C","S");
 params.norm.C = bars.C;
 params.norm.S = bars.S;
 params.fGetFeatures = @(x)getWmoosFeatures(x,params.norm.C, params.norm.S);
 
 %
-%% Normalization
+%% Normalization///////////
 
 % encoder in state
 params.encoder2state_scale = @(x) x./[26500 11500 8500 9000]'; % used to norm state
@@ -222,8 +222,7 @@ params.encoder2state_scale = @(x) x./[26500 11500 8500 9000]'; % used to norm st
 % scale factor must be row vector
 params.flexJoined_scale = @(x) x./[4092 2046 1023 2046];
 
-
-%% Environment
+%%Para
 % Parameters that affect getObservationInfo()
 params.numEMGFeatures = 40;
 params.stateLength = 44; % num state features: EMG features + motors
@@ -237,7 +236,7 @@ params.encodersLimits = [-2000 30000];
 params.EMGFeaturesLimits = [-inf inf];
 
 
-%% Getting specific field
+% Getting specific field
 if nargin == 1
     %     if nargin == 1 && isfield(params, field)
     if isfield(params, field)

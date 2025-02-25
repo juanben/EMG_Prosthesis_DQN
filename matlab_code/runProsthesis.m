@@ -1,3 +1,4 @@
+
 %runProsthesis executes in real time the prosthesis control agent.
 %
 %INSTRUCTIONS
@@ -41,7 +42,7 @@ cc
 % name = 'cDQN_slower_RT_distanceRewarding';
 %--WTF?
 
-agentFile  = "D:\trainedAgentsProtesis\best\_\24-07-03 14 31 48\Agent100.mat";
+agentFile  = "D:\trainedAgentsProtesisTest\00_oldy\_\25-02-18 12 48 17\Agent3000.mat";
 name = 'FINAL';
 
 %% Define the base directory and the episode directory

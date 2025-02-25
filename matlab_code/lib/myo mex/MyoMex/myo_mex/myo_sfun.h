@@ -36,7 +36,7 @@ mxIsDouble(pVal) && !mxIsComplex(pVal) && \
 
 // program behavior
 #define STREAMING_TIMEOUT 5
-#define INIT_DELAY 1000 // [ms] to wait for Myo
+#define INIT_DELAY 100  // [ms] to wait for Myo
 #define BUFFER_FRAMES_MIN 1
 #define SAMPLE_TIME_BLK 40  // [ms] sample time for the block
 #define SAMPLE_TIME_IMU 20  // [ms]  50Hz
